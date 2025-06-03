@@ -66,7 +66,7 @@ def main():
             base_prompt = create_base_prompt(chosen_features)
             random_prompts, instruct_prompts = create_random_prompts(chosen_features)
             job_id = chosen_features['character_name'] + "_" + dt.now().strftime("%Y-%m-%d_%H-%M-%S")
-            os.makedirs(f"outputs/{job_id}", exist_ok=True)
+            os.makedirs(f"outputs/{job_id}/instruct", exist_ok=True)
             print(f"Creating character with ID: {job_id}")
             print("Generating base image...")
             base_image_id = generate_base_image_bfl(base_prompt)
@@ -79,7 +79,7 @@ def main():
                 i_image.save(f"outputs/{job_id}/{i+1}.jpg")
                 with open(f"outputs/{job_id}/{i+1}.txt", "w", encoding="utf-8") as f:
                     f.write(prompt)
-                with open(f"outputs/{job_id}/{i+1}_instruct.txt", "w", encoding="utf-8") as f:
+                with open(f"outputs/{job_id}/instruct/{i+1}_instruct.txt", "w", encoding="utf-8") as f:
                     f.write(instruct_prompt)
             print(f"Character creation completed. All files saved in outputs/{job_id}/")
             input("Press Enter to return to the main menu...")
