@@ -1,0 +1,40 @@
+dim
+bright
+soft
+harsh
+warm
+cool
+natural
+artificial
+dramatic
+subtle
+moody
+ambient
+directional
+diffused
+fluorescent
+incandescent
+LED
+candlelit
+neon
+studio
+overhead
+backlighting
+side
+front
+golden hour
+blue hour
+twilight
+dawn
+dusk
+low level
+high contrast
+even
+uneven
+filtered
+spotlight
+floodlight
+accent
+task
+decorative
+emergency

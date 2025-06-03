@@ -1,0 +1,1 @@
+The subject is now at the {location}, the {lighting} lighting highlighting facial features. The subject is {body_pose}, with the head {head_pose}. Keep only the identity of the subject. The location, lighting and pose should change to match the new context.

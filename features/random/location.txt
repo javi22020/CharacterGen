@@ -1,0 +1,53 @@
+beach
+forest
+mountain
+city
+desert
+lake
+river
+cave
+meadow
+valley
+hill
+ocean
+park
+garden
+farm
+village
+town
+island
+canyon
+waterfall
+bridge
+road
+path
+field
+swamp
+jungle
+plains
+cliff
+harbor
+marketplace
+library
+school
+hospital
+restaurant
+cafe
+museum
+theater
+stadium
+airport
+train station
+shopping mall
+office building
+factory
+warehouse
+garage
+basement
+attic
+bedroom
+kitchen
+living room
+bathroom
+balcony
+rooftop
