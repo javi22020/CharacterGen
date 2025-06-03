@@ -36,7 +36,7 @@ def poll_image_bfl(request_id: str):
 
 def generate_base_image_bfl(prompt: str) -> str:
     request = requests.post(
-        "https://api.bfl.ai/v1/flux-kontext-pro",
+        "https://api.bfl.ai/v1/flux-pro-1.1-ultra",
         headers={
             "accept": "application/json",
             "x-key": os.environ.get("BFL_API_KEY"),
