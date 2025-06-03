@@ -42,7 +42,10 @@ def create_random_prompts(chosen_features: Dict[str, str], n: int = 15):
         if filename.endswith(".txt"):
             feature_name = filename.removesuffix(".txt")
             feature_options = open(f"features/random/{filename}").read().splitlines()
-            random_feature_options[feature_name] = rn.sample(feature_options, k=n)
+            if len(feature_options) < n:
+                random_feature_options[feature_name] = rn.choices(feature_options, k=n)
+            else:
+                random_feature_options[feature_name] = rn.sample(feature_options, k=n)
     random_prompts = []
     instruct_prompts = []
     for i in range(n):
