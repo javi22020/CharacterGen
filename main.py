@@ -5,7 +5,8 @@ from core.menus import (
     clear_screen,
     initial_menu,
     select_feature,
-    ensure_api_keys
+    ensure_api_keys,
+    select_number_of_images
 )
 from core.generate import (
     generate_base_image_bfl,
@@ -25,6 +26,7 @@ def choose_features():
             feature_options = open(f"features/selectable/{filename}").read().splitlines()
             chosen_feature = select_feature(feature_name.replace('_', ' ').capitalize(), feature_options)
             chosen_features[feature_name] = chosen_feature
+            clear_screen()
     return chosen_features
 
 def create_base_prompt(chosen_features):
@@ -63,14 +65,16 @@ def main():
         action = initial_menu()
         if action == "Create a new character":
             chosen_features = choose_features()
+            n = select_number_of_images()
             base_prompt = create_base_prompt(chosen_features)
-            random_prompts, instruct_prompts = create_random_prompts(chosen_features)
+            random_prompts, instruct_prompts = create_random_prompts(chosen_features, n)
             job_id = chosen_features['character_name'] + "_" + dt.now().strftime("%Y-%m-%d_%H-%M-%S")
             os.makedirs(f"outputs/{job_id}/instruct", exist_ok=True)
             print(f"Creating character with ID: {job_id}")
             print("Generating base image...")
             base_image_id = generate_base_image_bfl(base_prompt)
             base_image = poll_image_bfl(base_image_id)
+            base_image.save(f"outputs/{job_id}/base.jpg")
             with open(f"outputs/{job_id}/base.txt", "w", encoding="utf-8") as f:
                 f.write(base_prompt)
             for i, (prompt, instruct_prompt) in enumerate(zip(random_prompts, instruct_prompts)):
@@ -81,8 +85,6 @@ def main():
                     f.write(prompt)
                 with open(f"outputs/{job_id}/instruct/{i+1}_instruct.txt", "w", encoding="utf-8") as f:
                     f.write(instruct_prompt)
-            print(f"Character creation completed. All files saved in outputs/{job_id}/")
-            input("Press Enter to return to the main menu...")
 
         elif action == "Exit":
             print("Exiting the program.")

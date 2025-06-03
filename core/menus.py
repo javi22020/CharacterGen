@@ -21,6 +21,13 @@ def initial_menu() -> str:
     answer = inq.prompt(question)["action"]
     return answer
 
+def select_number_of_images() -> int:
+    question = [
+        inq.List("num_images", message="Images to generate", choices=["4", "8", "12", "16", "20", "24"], carousel=True)
+    ]
+    answer = inq.prompt(question)["num_images"]
+    return int(answer)
+
 def clear_screen() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')
 
