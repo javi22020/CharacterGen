@@ -1,53 +1,40 @@
-beach
-forest
-mountain
-city
-desert
-lake
-river
-cave
-meadow
-valley
-hill
-ocean
-park
-garden
-farm
-village
-town
-island
-canyon
-waterfall
-bridge
-road
-path
-field
-swamp
-jungle
-plains
-cliff
-harbor
-marketplace
-library
-school
-hospital
-restaurant
-cafe
-museum
-theater
-stadium
-airport
-train station
-shopping mall
-office building
-factory
-warehouse
-garage
-basement
-attic
-bedroom
-kitchen
-living room
-bathroom
-balcony
-rooftop
+village inn with wooden tables and warm bread
+town square with a central fountain
+forest path winding through tall trees
+riverside meadow with wildflowers
+old stone bridge crossing a stream
+market street lined with colorful shops
+countryside farmhouse with a red barn
+hillside overlooking a peaceful valley
+small chapel with stained glass windows
+cobblestone alley between old buildings
+ancient ruins covered in ivy
+bustling harbor with fishing boats
+mountain cave with crystal formations
+desert oasis surrounded by palm trees
+castle courtyard with a drawbridge
+abandoned watchtower on a cliff
+library filled with dusty tomes
+blacksmith forge with glowing coals
+moonlit cemetery with weathered headstones
+tavern cellar with wine barrels
+windmill on a grassy plain
+lighthouse beacon on rocky shores
+hidden grove with a babbling brook
+merchant caravan rest stop
+underground tunnel system
+busy crossroads with signposts
+village well in the town center
+old wooden dock by the lake
+flower garden behind a cottage
+grain mill beside a river
+local bakery with fresh pastries
+community stable with horses
+small fishing pier on the pond
+roadside inn with travelers
+town hall with notice boards
+village church with bell tower
+general store with supplies
+apple orchard in bloom
+stone cottage with smoke from chimney
+village school with children playing
