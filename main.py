@@ -23,7 +23,7 @@ def choose_features():
         if filename.endswith(".txt"):
             feature_name = filename.removesuffix(".txt")
             feature_options = open(f"features/selectable/{filename}").read().splitlines()
-            chosen_feature = select_feature(f"Choose {feature_name.replace('_', ' ')}:", feature_options)
+            chosen_feature = select_feature(feature_name.replace('_', ' ').capitalize(), feature_options)
             chosen_features[feature_name] = chosen_feature
     return chosen_features
 
