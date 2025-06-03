@@ -9,17 +9,10 @@ CharacterGen is a tool designed to generate series of identity-consistent images
 </p>
 
 <p align="center">
-   <p align="center">
-   <img src="assets/image_1.png" alt="Generated Image 1" width="40%"/>
+   <img src="assets/image_1.png" alt="Generated Image 1" width="40%" style="display: inline-block; margin-right: 10px;"/>
+   <img src="assets/image_2.png" alt="Generated Image 2" width="40%" style="display: inline-block;"/>
    <br/>
-   <em>Generated consistent character (image 1)</em>
-   </p>
-
-   <p align="center">
-   <img src="assets/image_2.png" alt="Generated Image 2" width="40%"/>
-   <br/>
-   <em>Generated consistent character (image 2)</em>
-   </p>
+   <em>Generated consistent character images</em>
 </p>
 
 ## Features
