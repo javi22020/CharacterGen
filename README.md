@@ -24,6 +24,10 @@ CharacterGen is a tool designed to generate series of identity-consistent images
 Under the hood, CharacterGen uses both Flux 1.1 Pro Ultra and Flux.1 Kontext to create several images keeping the same identity. This allows for quick data generation for character LoRA training or other purposes.
 
 ## Usage
+First, you need to set up your API keys for Black Forest Labs or Replicate. You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys.
+
+After setting up your API keys, you can run the script to generate images.
+
 **Recommended**: double click the `CharacterGen.bat` file to run the script. This will automatically set up the environment and run the script.
 > [!NOTE]
 > Sometimes, Windows Defender may flag the script as a potential threat. If this happens, you can safely ignore the warning and allow the script to run.
