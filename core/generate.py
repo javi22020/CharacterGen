@@ -22,7 +22,7 @@ def poll_image_bfl(request_id: str):
 
         status = request_json.get("status")
 
-        print(f"Waiting for image {request_id}" + "."*(i % 4), end="\r")
+        print(f"Waiting for image {request_id}" + "."*(i % 4) + "    ", end="\r")
         i += 1
 
         if status == "Ready":
@@ -30,6 +30,7 @@ def poll_image_bfl(request_id: str):
             image_url = result.get("sample")
             response = requests.get(image_url)
             buffer = BytesIO(response.content)
+            print()
             return Image.open(buffer)
         
         elif status not in ["Processing", "Queued", "Pending"]: 

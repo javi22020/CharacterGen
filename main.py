@@ -81,13 +81,16 @@ def main():
             with open(f"outputs/{job_id}/base.txt", "w", encoding="utf-8") as f:
                 f.write(base_prompt)
             for i, (prompt, instruct_prompt) in enumerate(zip(random_prompts, instruct_prompts)):
-                i_image_id = edit_base_image_bfl(base_image, instruct_prompt)
-                i_image = poll_image_bfl(i_image_id)
-                i_image.save(f"outputs/{job_id}/{i+1}.jpg")
-                with open(f"outputs/{job_id}/{i+1}.txt", "w", encoding="utf-8") as f:
-                    f.write(prompt)
-                with open(f"outputs/{job_id}/instruct/{i+1}_instruct.txt", "w", encoding="utf-8") as f:
-                    f.write(instruct_prompt)
+                try:
+                    i_image_id = edit_base_image_bfl(base_image, instruct_prompt)
+                    i_image = poll_image_bfl(i_image_id)
+                    i_image.save(f"outputs/{job_id}/{i+1}.jpg")
+                    with open(f"outputs/{job_id}/{i+1}.txt", "w", encoding="utf-8") as f:
+                        f.write(prompt)
+                    with open(f"outputs/{job_id}/instruct/{i+1}_instruct.txt", "w", encoding="utf-8") as f:
+                        f.write(instruct_prompt)
+                except Exception as e:
+                    print(f"Error generating image {i+1}: {e}")
 
         elif action == "Exit":
             print("Exiting the program.")
