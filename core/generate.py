@@ -5,6 +5,7 @@ import os
 from PIL import Image
 from io import BytesIO
 import base64
+from core.config import *
 
 def poll_image_bfl(request_id: str):
     i = 0
@@ -36,7 +37,7 @@ def poll_image_bfl(request_id: str):
 
 def generate_base_image_bfl(prompt: str) -> str:
     request = requests.post(
-        "https://api.bfl.ai/v1/flux-pro-1.1-ultra",
+        f"https://api.bfl.ai/v1/{BFL_BASE_MODEL}",
         headers={
             "accept": "application/json",
             "x-key": os.environ.get("BFL_API_KEY"),
@@ -57,7 +58,7 @@ def edit_base_image_bfl(image: Image.Image, instruct_prompt: str) -> str:
     img_str = base64.b64encode(buffered.getvalue()).decode()
 
     request = requests.post(
-        "https://api.bfl.ai/v1/flux-kontext-pro",
+        f"https://api.bfl.ai/v1/{BFL_EDIT_MODEL}",
         headers={
             "accept": "application/json",
             "x-key": os.environ.get("BFL_API_KEY"),
