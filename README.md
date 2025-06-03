@@ -58,12 +58,10 @@ The script uses three different prompts.
 Template: `prompts/base.md`
 > [!NOTE]
 > If you add new variables to the base prompt, make sure to add a `.txt` file with the variable name in the `prompts/selectable` directory. This is necessary for the script to recognize the new variable.
-- Instruct Prompt: This is the prompt used to generate the secondary images following the base image identity. It is designed to keep the identity of the character while changing the context.
-Template: `prompts/instruct.md`
+- Instruct Prompt: This is the prompt used to generate the secondary images following the base image identity. It is designed to keep the identity of the character while changing the context. Template: `prompts/instruct.md`
 > [!NOTE]
 > If you add new variables to the instruct prompt, make sure to add a `.txt` file with the variable name in the `prompts/random` directory. This is necessary for the script to recognize the new variable.
-- Random Prompt: The same as the instruct prompt, but in a different tone. This is used to "pre-caption" the images, making them more suitable for training.
-Template: `prompts/random.md`
+- Random Prompt: The same as the instruct prompt, but in a different tone. This is used to "pre-caption" the images, making them more suitable for training. Template: `prompts/random.md`
 
 ### Variables
 Each variable file has the same structure, with each line representing a different value for the variable. The script will randomly select one of these values when generating the images.
