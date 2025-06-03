@@ -13,6 +13,7 @@ from core.generate import (
     edit_base_image_bfl,
     poll_image_bfl
 )
+from core.config import *
 from typing import Dict
 from datetime import datetime as dt
 import random as rn
@@ -77,14 +78,14 @@ def main():
             print("Generating base image...")
             base_image_id = generate_base_image_bfl(base_prompt)
             base_image = poll_image_bfl(base_image_id)
-            base_image.save(f"outputs/{job_id}/base.jpg")
+            base_image.save(f"outputs/{job_id}/base.{IMAGE_FORMAT}")
             with open(f"outputs/{job_id}/base.txt", "w", encoding="utf-8") as f:
                 f.write(base_prompt)
             for i, (prompt, instruct_prompt) in enumerate(zip(random_prompts, instruct_prompts)):
                 try:
                     i_image_id = edit_base_image_bfl(base_image, instruct_prompt)
                     i_image = poll_image_bfl(i_image_id)
-                    i_image.save(f"outputs/{job_id}/{i+1}.jpg")
+                    i_image.save(f"outputs/{job_id}/{i+1}.{IMAGE_FORMAT}")
                     with open(f"outputs/{job_id}/{i+1}.txt", "w", encoding="utf-8") as f:
                         f.write(prompt)
                     with open(f"outputs/{job_id}/instruct/{i+1}_instruct.txt", "w", encoding="utf-8") as f:

@@ -55,7 +55,7 @@ def generate_base_image_bfl(prompt: str) -> str:
 
 def edit_base_image_bfl(image: Image.Image, instruct_prompt: str) -> str:
     buffered = BytesIO()
-    image.save(buffered, format="JPEG")
+    image.save(buffered, format="JPEG" if IMAGE_FORMAT == "jpg" else "PNG")
     img_str = base64.b64encode(buffered.getvalue()).decode()
 
     request = requests.post(
