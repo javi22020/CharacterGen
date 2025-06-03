@@ -24,11 +24,29 @@ CharacterGen is a tool designed to generate series of identity-consistent images
 Under the hood, CharacterGen uses both Flux 1.1 Pro Ultra and Flux.1 Kontext to create several images keeping the same identity. This allows for quick data generation for character LoRA training or other purposes.
 
 ## Usage
-1. Install the required dependencies:
+**Recommended**: double click the `CharacterGen.bat` file to run the script. This will automatically set up the environment and run the script.
+> [!NOTE]
+> Sometimes, Windows Defender may flag the script as a potential threat. If this happens, you can safely ignore the warning and allow the script to run.
+
+**Manual**:If you prefer to run the script manually, follow these steps:
+1. Create a virtual environment (optional but recommended):
+   ```bash
+   python -m venv venv
+   ```
+   Activate the virtual environment:
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+2. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-2. Run the script:
+3. Run the script:
     ```bash
     python main.py
     ```
