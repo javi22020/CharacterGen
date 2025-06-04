@@ -73,3 +73,32 @@ def edit_base_image_bfl(image: Image.Image, instruct_prompt: str) -> str:
 
     request_id = request["id"]
     return request_id
+
+
+def generate_base_image_replicate(prompt: str) -> Image.Image:
+    """Generate a base image using the Replicate API."""
+    client = replicate.Client(api_token=os.environ.get("REPLICATE_API_KEY"))
+    output = client.run(
+        REPLICATE_BASE_MODEL,
+        input={"prompt": prompt, "aspect_ratio": "1:1"},
+    )
+    if isinstance(output, list):
+        output = output[0]
+    response = requests.get(output)
+    return Image.open(BytesIO(response.content))
+
+
+def edit_base_image_replicate(image: Image.Image, instruct_prompt: str) -> Image.Image:
+    """Edit an image keeping its identity using the Replicate API."""
+    buffered = BytesIO()
+    image.save(buffered, format="JPEG" if IMAGE_FORMAT == "jpg" else "PNG")
+    buffered.seek(0)
+    client = replicate.Client(api_token=os.environ.get("REPLICATE_API_KEY"))
+    output = client.run(
+        REPLICATE_EDIT_MODEL,
+        input={"prompt": instruct_prompt, "input_image": buffered},
+    )
+    if isinstance(output, list):
+        output = output[0]
+    response = requests.get(output)
+    return Image.open(BytesIO(response.content))

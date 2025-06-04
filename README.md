@@ -22,6 +22,8 @@ Under the hood, CharacterGen uses both Flux 1.1 Pro Ultra and Flux.1 Kontext to 
 First, you need to set up your API keys for Black Forest Labs or Replicate. You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys.
 
 After setting up your API keys, you can run the script to generate images.
+You can change the default generation provider at any time from the **Settings**
+menu of the application.
 
 **Recommended**: double click the `CharacterGen.bat` file to run the script. This will automatically set up the environment and run the script.
 > [!NOTE]
