@@ -6,12 +6,15 @@ from core.menus import (
     initial_menu,
     select_feature,
     ensure_api_keys,
-    select_number_of_images
+    select_number_of_images,
+    provider_settings,
 )
 from core.generate import (
     generate_base_image_bfl,
     edit_base_image_bfl,
-    poll_image_bfl
+    poll_image_bfl,
+    generate_base_image_replicate,
+    edit_base_image_replicate,
 )
 from core.config import *
 from typing import Dict
@@ -63,9 +66,11 @@ def create_random_prompts(chosen_features: Dict[str, str], n: int = 15):
 
 def main():
     ensure_api_keys()
+    provider = DEFAULT_PROVIDER
     while True:
         clear_screen()
         show_title()
+        print(f"Current provider: {provider}")
         action = initial_menu()
         if action == "Create a new character":
             chosen_features = choose_features()
@@ -76,15 +81,21 @@ def main():
             os.makedirs(f"outputs/{job_id}/instruct", exist_ok=True)
             print(f"Creating character with ID: {job_id}")
             print("Generating base image...")
-            base_image_id = generate_base_image_bfl(base_prompt)
-            base_image = poll_image_bfl(base_image_id)
+            if provider == "BFL":
+                base_image_id = generate_base_image_bfl(base_prompt)
+                base_image = poll_image_bfl(base_image_id)
+            else:
+                base_image = generate_base_image_replicate(base_prompt)
             base_image.save(f"outputs/{job_id}/base.{IMAGE_FORMAT}")
             with open(f"outputs/{job_id}/base.txt", "w", encoding="utf-8") as f:
                 f.write(base_prompt)
             for i, (prompt, instruct_prompt) in enumerate(zip(random_prompts, instruct_prompts)):
                 try:
-                    i_image_id = edit_base_image_bfl(base_image, instruct_prompt)
-                    i_image = poll_image_bfl(i_image_id)
+                    if provider == "BFL":
+                        i_image_id = edit_base_image_bfl(base_image, instruct_prompt)
+                        i_image = poll_image_bfl(i_image_id)
+                    else:
+                        i_image = edit_base_image_replicate(base_image, instruct_prompt)
                     i_image.save(f"outputs/{job_id}/{i+1}.{IMAGE_FORMAT}")
                     with open(f"outputs/{job_id}/{i+1}.txt", "w", encoding="utf-8") as f:
                         f.write(prompt)
@@ -93,6 +104,8 @@ def main():
                 except Exception as e:
                     print(f"Error generating image {i+1}: {e}")
 
+        elif action == "Settings":
+            provider = provider_settings(provider)
         elif action == "Exit":
             print("Exiting the program.")
             break
