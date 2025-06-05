@@ -1,1 +1,1 @@
-A photo of a {age} year old {sex}, has {hair_style} {hair_color} hair and {eye_color} eyes. Standing at the {location}, the {lighting} lighting highlights the facial features. The subject is {body_pose}, with the head {head_pose}.
+A {age}-year-old {sex} with {hair_style} {hair_color} hair and {eye_color} eyes is at the {location}. The {lighting} lighting highlights the facial features. The subject is {body_pose} with the head {head_pose}.

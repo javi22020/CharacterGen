@@ -1,1 +1,1 @@
-A portrait photo of {character_name}, a {age} year old {sex}, has {hair_style} {hair_color} hair and {eye_color} eyes. The light marks the facial features, isolated on a neutral background.
+A well-lit portrait of {character_name}, a {age}-year-old {sex} with {hair_style} {hair_color} hair and {eye_color} eyes. The face is centered against a neutral background.
