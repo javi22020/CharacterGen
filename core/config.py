@@ -12,5 +12,8 @@ REPLICATE_EDIT_MODEL = "blackforest-ai/flux-kontext-pro"
 # ``DEFAULT_PROVIDER`` environment variable to ``"REPLICATE"`` or ``"BFL"``.
 DEFAULT_PROVIDER = os.environ.get("DEFAULT_PROVIDER", "BFL").upper()
 
+# Default aspect ratio used for image generation
+ASPECT_RATIO = os.environ.get("ASPECT_RATIO", "1:1")
+
 # Output format for generated images
 IMAGE_FORMAT = "png"

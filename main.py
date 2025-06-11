@@ -82,10 +82,10 @@ def main():
             print(f"Creating character with ID: {job_id}")
             print("Generating base image...")
             if provider == "BFL":
-                base_image_id = generate_base_image_bfl(base_prompt)
+                base_image_id = generate_base_image_bfl(base_prompt, aspect_ratio=ASPECT_RATIO)
                 base_image = poll_image_bfl(base_image_id)
             else:
-                base_image = generate_base_image_replicate(base_prompt)
+                base_image = generate_base_image_replicate(base_prompt, aspect_ratio=ASPECT_RATIO)
             base_image.save(f"outputs/{job_id}/base.{IMAGE_FORMAT}")
             with open(f"outputs/{job_id}/base.txt", "w", encoding="utf-8") as f:
                 f.write(base_prompt)
