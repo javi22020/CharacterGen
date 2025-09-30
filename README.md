@@ -19,9 +19,12 @@ CharacterGen is a tool designed to generate series of identity-consistent images
 Under the hood, CharacterGen supports multiple AI providers:
 - **Black Forest Labs**: Uses Flux 1.1 Pro Ultra and Flux.1 Kontext for high-quality image generation
 - **Replicate**: Alternative access to the same Flux models via Replicate's platform
-- **Google Gemini (Nano Banana)**: Uses Gemini 2.5 Flash Image for text-to-image and image-to-image generation
+- **Google Gemini (Nano Banana)**: Uses Gemini for enhanced prompting and image analysis (demo implementation with placeholder images)
 
 All providers create several images while keeping the same character identity. This allows for quick data generation for character LoRA training or other purposes.
+
+> [!NOTE]
+> The Google Gemini integration is currently a demonstration implementation. Gemini excels at text generation and image analysis but does not directly generate images. For actual image generation, Google's Imagen API would be required. This implementation shows the integration pattern and uses Gemini for prompt enhancement.
 
 ## Usage
 First, you need to set up your API keys for at least one provider (Black Forest Labs, Replicate, or Google Gemini). You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys.
@@ -29,7 +32,10 @@ First, you need to set up your API keys for at least one provider (Black Forest 
 ### Supported Providers:
 - **Black Forest Labs**: Direct access to Flux models (requires BFL_API_KEY)
 - **Replicate**: Access Flux models via Replicate platform (requires REPLICATE_API_KEY)
-- **Google Gemini (Nano Banana)**: Gemini 2.5 Flash Image generation (requires GOOGLE_API_KEY)
+- **Google Gemini (Nano Banana)**: Enhanced prompting and image analysis demo (requires GOOGLE_API_KEY)
+
+> [!NOTE]
+> The Google Gemini provider is currently a demonstration that shows enhanced prompting capabilities. It generates placeholder images with enhanced descriptions. For production use with Google's image generation, you would need access to Google's Imagen API.
 
 After setting up your API keys, you can run the script to generate images.
 You can change the default generation provider at any time from the **Settings**

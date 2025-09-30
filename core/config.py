@@ -8,9 +8,11 @@ BFL_EDIT_MODEL = "flux-kontext-pro"
 REPLICATE_BASE_MODEL = "blackforest-ai/flux-pro-1.1-ultra"
 REPLICATE_EDIT_MODEL = "blackforest-ai/flux-kontext-pro"
 
-# Google Gemini model identifiers for Nano Banana (Gemini 2.5 Flash Image)
-GOOGLE_IMAGE_MODEL = "imagen-3.0-generate-001"
-GOOGLE_EDIT_MODEL = "imagen-3.0-generate-001"
+# Google Gemini model identifiers for Nano Banana
+# Note: Gemini is primarily for text generation, Imagen is for image generation
+# This is a conceptual implementation - actual Google image generation would use Imagen API
+GOOGLE_IMAGE_MODEL = "gemini-1.5-flash"  # Used for enhanced prompting
+GOOGLE_EDIT_MODEL = "gemini-1.5-flash"   # Used for enhanced prompting
 
 # Default provider to use for generation. Can be overridden by setting the
 # ``DEFAULT_PROVIDER`` environment variable to ``"REPLICATE"``, ``"BFL"``, or ``"GOOGLE"``.
