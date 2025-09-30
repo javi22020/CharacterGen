@@ -1,5 +1,5 @@
 # CharacterGen
-CharacterGen is a tool designed to generate series of identity-consistent images based on an initial description, using the Black Forest Labs or Replicate APIs.
+CharacterGen is a tool designed to generate series of identity-consistent images based on an initial description, using the Black Forest Labs, Replicate, or Google Gemini APIs.
 
 ## Example
 <p align="center">
@@ -16,10 +16,20 @@ CharacterGen is a tool designed to generate series of identity-consistent images
 </p>
 
 ## Features
-Under the hood, CharacterGen uses both Flux 1.1 Pro Ultra and Flux.1 Kontext to create several images keeping the same identity. This allows for quick data generation for character LoRA training or other purposes.
+Under the hood, CharacterGen supports multiple AI providers:
+- **Black Forest Labs**: Uses Flux 1.1 Pro Ultra and Flux.1 Kontext for high-quality image generation
+- **Replicate**: Alternative access to the same Flux models via Replicate's platform
+- **Google Gemini (Nano Banana)**: Uses Gemini 2.5 Flash Image for text-to-image and image-to-image generation
+
+All providers create several images while keeping the same character identity. This allows for quick data generation for character LoRA training or other purposes.
 
 ## Usage
-First, you need to set up your API keys for Black Forest Labs or Replicate. You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys.
+First, you need to set up your API keys for at least one provider (Black Forest Labs, Replicate, or Google Gemini). You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys.
+
+### Supported Providers:
+- **Black Forest Labs**: Direct access to Flux models (requires BFL_API_KEY)
+- **Replicate**: Access Flux models via Replicate platform (requires REPLICATE_API_KEY)
+- **Google Gemini (Nano Banana)**: Gemini 2.5 Flash Image generation (requires GOOGLE_API_KEY)
 
 After setting up your API keys, you can run the script to generate images.
 You can change the default generation provider at any time from the **Settings**

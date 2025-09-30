@@ -4,3 +4,4 @@ inquirer
 python-dotenv
 replicate
 pillow
+google-generativeai

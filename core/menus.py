@@ -35,8 +35,12 @@ def clear_screen() -> None:
 def ensure_api_keys():
     bfl_api_key = os.getenv("BFL_API_KEY")
     replicate_api_key = os.getenv("REPLICATE_API_KEY")
-    if not bfl_api_key and not replicate_api_key:
-        print("Please set your BFL_API_KEY and REPLICATE_API_KEY environment variables.")
+    google_api_key = os.getenv("GOOGLE_API_KEY")
+    if not bfl_api_key and not replicate_api_key and not google_api_key:
+        print("Please set at least one of the following API keys:")
+        print("- BFL_API_KEY (Black Forest Labs)")
+        print("- REPLICATE_API_KEY (Replicate)")
+        print("- GOOGLE_API_KEY (Google Gemini)")
         print("You can find instructions in the README.md file.")
         time.sleep(5)
         exit(1)
@@ -47,6 +51,7 @@ def provider_settings(current_provider: str) -> str:
     options = [
         ("Black Forest Labs", "BFL"),
         ("Replicate", "REPLICATE"),
+        ("Google Gemini (Nano Banana)", "GOOGLE"),
     ]
     question = [
         inq.List(
@@ -54,7 +59,9 @@ def provider_settings(current_provider: str) -> str:
             message="Select default provider",
             choices=[opt[0] for opt in options],
             carousel=True,
-            default="Black Forest Labs" if current_provider == "BFL" else "Replicate",
+            default="Black Forest Labs" if current_provider == "BFL" 
+                   else "Replicate" if current_provider == "REPLICATE"
+                   else "Google Gemini (Nano Banana)",
         )
     ]
     answer = inq.prompt(question)["provider"]
