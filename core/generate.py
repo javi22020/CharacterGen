@@ -36,7 +36,7 @@ def poll_image_bfl(request_id: str):
         elif status not in ["Processing", "Queued", "Pending"]: 
             raise ValueError(f"An error or unexpected status occurred: {request_json}")
 
-def generate_base_image_bfl(prompt: str) -> str:
+def generate_base_image_bfl(prompt: str, aspect_ratio: str = ASPECT_RATIO) -> str:
     request = requests.post(
         f"https://api.bfl.ai/v1/{BFL_BASE_MODEL}",
         headers={
@@ -46,7 +46,7 @@ def generate_base_image_bfl(prompt: str) -> str:
         },
         json={
             "prompt": prompt,
-            "aspect_ratio": "1:1"
+            "aspect_ratio": aspect_ratio
         }
     ).json()
 
@@ -75,12 +75,12 @@ def edit_base_image_bfl(image: Image.Image, instruct_prompt: str) -> str:
     return request_id
 
 
-def generate_base_image_replicate(prompt: str) -> Image.Image:
+def generate_base_image_replicate(prompt: str, aspect_ratio: str = ASPECT_RATIO) -> Image.Image:
     """Generate a base image using the Replicate API."""
     client = replicate.Client(api_token=os.environ.get("REPLICATE_API_KEY"))
     output = client.run(
         REPLICATE_BASE_MODEL,
-        input={"prompt": prompt, "aspect_ratio": "1:1"},
+        input={"prompt": prompt, "aspect_ratio": aspect_ratio},
     )
     if isinstance(output, list):
         output = output[0]
