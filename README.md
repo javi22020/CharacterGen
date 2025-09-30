@@ -1,5 +1,5 @@
 # CharacterGen
-CharacterGen is a tool designed to generate series of identity-consistent images based on an initial description, using the Black Forest Labs or Replicate APIs.
+CharacterGen is a tool designed to generate series of identity-consistent images based on an initial description, using Black Forest Labs, Replicate, or Seedream 4 APIs.
 
 ## Example
 <p align="center">
@@ -16,10 +16,20 @@ CharacterGen is a tool designed to generate series of identity-consistent images
 </p>
 
 ## Features
-Under the hood, CharacterGen uses both Flux 1.1 Pro Ultra and Flux.1 Kontext to create several images keeping the same identity. This allows for quick data generation for character LoRA training or other purposes.
+CharacterGen supports multiple AI image generation providers:
+
+- **Black Forest Labs (Flux)**: Uses Flux 1.1 Pro Ultra for base generation and Flux.1 Kontext for identity-consistent editing
+- **Replicate**: Access to various models including Flux models via Replicate's API
+- **Seedream 4**: ByteDance's unified text-to-image generation and editing model, available through both Replicate and direct ByteDance APIs
+
+This allows for quick data generation for character LoRA training or other purposes with different model capabilities and pricing options.
 
 ## Usage
-First, you need to set up your API keys for Black Forest Labs or Replicate. You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys.
+First, you need to set up your API keys for at least one of the supported providers. You can do this by copying + renaming the `.env.example` file to `.env` and filling in your API keys:
+
+- `BFL_API_KEY`: For Black Forest Labs API access
+- `REPLICATE_API_KEY`: For Replicate API access  
+- `BYTEDANCE_API_KEY`: For direct ByteDance/Seedream 4 API access (optional, Seedream 4 is also available via Replicate)
 
 After setting up your API keys, you can run the script to generate images.
 You can change the default generation provider at any time from the **Settings**
