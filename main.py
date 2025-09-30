@@ -15,6 +15,11 @@ from core.generate import (
     poll_image_bfl,
     generate_base_image_replicate,
     edit_base_image_replicate,
+    generate_base_image_seedream4_replicate,
+    edit_base_image_seedream4_replicate,
+    generate_base_image_seedream4_bytedance,
+    edit_base_image_seedream4_bytedance,
+    poll_image_seedream4_bytedance,
 )
 from core.config import *
 from typing import Dict
@@ -84,8 +89,16 @@ def main():
             if provider == "BFL":
                 base_image_id = generate_base_image_bfl(base_prompt)
                 base_image = poll_image_bfl(base_image_id)
-            else:
+            elif provider == "REPLICATE":
                 base_image = generate_base_image_replicate(base_prompt)
+            elif provider == "SEEDREAM4":
+                base_image = generate_base_image_seedream4_replicate(base_prompt)
+            elif provider == "SEEDREAM4_BYTEDANCE":
+                base_image_id = generate_base_image_seedream4_bytedance(base_prompt)
+                base_image = poll_image_seedream4_bytedance(base_image_id)
+            else:
+                raise ValueError(f"Unknown provider: {provider}")
+            
             base_image.save(f"outputs/{job_id}/base.{IMAGE_FORMAT}")
             with open(f"outputs/{job_id}/base.txt", "w", encoding="utf-8") as f:
                 f.write(base_prompt)
@@ -94,8 +107,16 @@ def main():
                     if provider == "BFL":
                         i_image_id = edit_base_image_bfl(base_image, instruct_prompt)
                         i_image = poll_image_bfl(i_image_id)
-                    else:
+                    elif provider == "REPLICATE":
                         i_image = edit_base_image_replicate(base_image, instruct_prompt)
+                    elif provider == "SEEDREAM4":
+                        i_image = edit_base_image_seedream4_replicate(base_image, instruct_prompt)
+                    elif provider == "SEEDREAM4_BYTEDANCE":
+                        i_image_id = edit_base_image_seedream4_bytedance(base_image, instruct_prompt)
+                        i_image = poll_image_seedream4_bytedance(i_image_id)
+                    else:
+                        raise ValueError(f"Unknown provider: {provider}")
+                        
                     i_image.save(f"outputs/{job_id}/{i+1}.{IMAGE_FORMAT}")
                     with open(f"outputs/{job_id}/{i+1}.txt", "w", encoding="utf-8") as f:
                         f.write(prompt)

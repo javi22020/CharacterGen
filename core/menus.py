@@ -35,8 +35,9 @@ def clear_screen() -> None:
 def ensure_api_keys():
     bfl_api_key = os.getenv("BFL_API_KEY")
     replicate_api_key = os.getenv("REPLICATE_API_KEY")
-    if not bfl_api_key and not replicate_api_key:
-        print("Please set your BFL_API_KEY and REPLICATE_API_KEY environment variables.")
+    bytedance_api_key = os.getenv("BYTEDANCE_API_KEY")
+    if not bfl_api_key and not replicate_api_key and not bytedance_api_key:
+        print("Please set at least one API key: BFL_API_KEY, REPLICATE_API_KEY, or BYTEDANCE_API_KEY.")
         print("You can find instructions in the README.md file.")
         time.sleep(5)
         exit(1)
@@ -47,14 +48,20 @@ def provider_settings(current_provider: str) -> str:
     options = [
         ("Black Forest Labs", "BFL"),
         ("Replicate", "REPLICATE"),
+        ("Seedream 4 (Replicate)", "SEEDREAM4"),
     ]
+    
+    # Check if ByteDance API key is available
+    if os.getenv("BYTEDANCE_API_KEY"):
+        options.append(("Seedream 4 (ByteDance)", "SEEDREAM4_BYTEDANCE"))
+    
     question = [
         inq.List(
             "provider",
             message="Select default provider",
             choices=[opt[0] for opt in options],
             carousel=True,
-            default="Black Forest Labs" if current_provider == "BFL" else "Replicate",
+            default=next((opt[0] for opt in options if opt[1] == current_provider), options[0][0]),
         )
     ]
     answer = inq.prompt(question)["provider"]
